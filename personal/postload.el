@@ -64,6 +64,10 @@
   (forward-line -10))
 (define-key prelude-mode-map "\M-v" 'ten-back-jump)
 
+;; Change helm key bindings
+(define-key helm-find-files-map (kbd "C-n") 'helm-find-files-up-one-level)
+(define-key helm-find-files-map (kbd "C-h") 'helm-execute-persistent-action)
+
 ;; Javascript mode hook. js2 has terrible indentation and js3 does not support es6
 (defun js-custom ()
   "js-mode-hook"
