@@ -18,6 +18,7 @@
 ;; Set javascript indentation to 2.
 (setq js2-basic-offset 2)
 (setq jsx-indent-level 2)
+(setq js2-strict-trailing-comma-warning nil)
 
 ;; Show trailing whitespace. (no longer) Delete ws on save.
 (setq-default show-trailing-whitespace t)
@@ -44,7 +45,7 @@
 (define-key prelude-mode-map "\C-w" 'backward-kill-word)
 (define-key prelude-mode-map "\M-p" 'backward-paragraph)
 (define-key prelude-mode-map "\M-n" 'forward-paragraph)
-(define-key prelude-mode-map "\C-c\C-f" 'flymake-goto-next-error)
+(define-key prelude-mode-map "\C-c\C-f" 'flycheck-next-error)
 (define-key prelude-mode-map "\C-x\C-k" 'kill-region)
 (define-key prelude-mode-map "\C-ct" 'indent-to-previous-line)
 (define-key prelude-mode-map "\C-c<" 'small-back-indent)
@@ -65,7 +66,7 @@
 (define-key prelude-mode-map "\M-v" 'ten-back-jump)
 
 ;; Change helm key bindings
-(define-key helm-find-files-map (kbd "C-n") 'helm-find-files-up-one-level)
+(define-key helm-find-files-map (kbd "C-u") 'helm-find-files-up-one-level)
 (define-key helm-find-files-map (kbd "C-h") 'helm-execute-persistent-action)
 
 ;; Javascript mode hook. js2 has terrible indentation and js3 does not support es6
