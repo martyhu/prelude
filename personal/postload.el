@@ -17,7 +17,8 @@
 
 ;; Set javascript indentation to 2.
 (setq js2-basic-offset 2)
-(setq jsx-indent-level 2)
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
 (setq js2-strict-trailing-comma-warning nil)
 
 ;; Show trailing whitespace. (no longer) Delete ws on save.
@@ -77,6 +78,9 @@
 
 (add-hook 'prelude-js-mode-hook
           '(lambda() (js-custom)))
+
+;; use eslint with web-mode for jsx files
+(flycheck-add-mode 'javascript-eslint 'web-mode)
 
 ;; Modes to open for different suffixes
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
