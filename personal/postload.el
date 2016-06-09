@@ -77,3 +77,6 @@
 
 (add-hook 'prelude-js-mode-hook
           '(lambda() (js-custom)))
+
+;; Modes to open for different suffixes
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))

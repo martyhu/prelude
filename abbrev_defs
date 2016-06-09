@@ -39,7 +39,7 @@
     ("sfy" "JSON.stringify(" dont-insert-expansion-char 0)
    ))
 
-(define-abbrev-table 'jsx-mode-abbrev-table
+(define-abbrev-table 'web-mode-abbrev-table
   '(
     ("l" "let")
     ("c" "const")
