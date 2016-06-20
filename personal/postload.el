@@ -46,9 +46,20 @@
 (define-key prelude-mode-map "\C-w" 'backward-kill-word)
 (define-key prelude-mode-map "\M-p" 'backward-paragraph)
 (define-key prelude-mode-map "\M-n" 'forward-paragraph)
+(define-key prelude-mode-map "\C-cr" 'replace-string)
+(define-key prelude-mode-map "\C-cq" 'query-replace)
 (define-key prelude-mode-map "\C-c\C-f" 'flycheck-next-error)
 (define-key prelude-mode-map "\C-x\C-k" 'kill-region)
 (define-key prelude-mode-map "\C-ct" 'indent-to-previous-line)
+(setq standard-indent 4)
+(global-set-key "\C-x<" 'decrease-left-margin)
+(global-set-key "\C-x>" 'increase-left-margin)
+(defun small-back-indent ()
+  (interactive)
+  (decrease-left-margin (mark) (point) 2))
+(defun small-indent ()
+  (interactive)
+    (increase-left-margin (mark) (point) 2))
 (define-key prelude-mode-map "\C-c<" 'small-back-indent)
 (define-key prelude-mode-map "\C-c>" 'small-indent)
 (defun indent-to-previous-line ()
@@ -65,10 +76,18 @@
   (interactive)
   (forward-line -10))
 (define-key prelude-mode-map "\M-v" 'ten-back-jump)
+(defun surround (begin end char)
+    "Put CHAR at START and END of the region."
+    (save-excursion
+      (goto-char end)
+      (insert char)
+      (goto-char begin)
+          (insert char)))
+(define-key prelude-mode-map "\C-cs" 'surround)
 
 ;; Change helm key bindings
 (define-key helm-find-files-map (kbd "C-u") 'helm-find-files-up-one-level)
-(define-key helm-find-files-map (kbd "C-h") 'helm-execute-persistent-action)
+(define-key helm-find-files-map (kbd "C-f") 'helm-execute-persistent-action)
 
 ;; Javascript mode hook. js2 has terrible indentation and js3 does not support es6
 (defun js-custom ()
@@ -84,3 +103,4 @@
 
 ;; Modes to open for different suffixes
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.sls$" . yaml-mode))
